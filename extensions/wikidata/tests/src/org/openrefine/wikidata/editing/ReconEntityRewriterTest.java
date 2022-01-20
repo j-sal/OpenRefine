@@ -25,7 +25,7 @@ package org.openrefine.wikidata.editing;
 
 import static org.testng.Assert.assertEquals;
 
-import org.openrefine.wikidata.schema.exceptions.NewItemNotCreatedYetException;
+import org.openrefine.wikidata.schema.exceptions.NewEntityNotCreatedYetException;
 import org.openrefine.wikidata.testing.TestingData;
 import org.openrefine.wikidata.updates.TermedStatementEntityUpdate;
 import org.openrefine.wikidata.updates.TermedStatementEntityUpdateBuilder;
@@ -37,14 +37,14 @@ import org.wikidata.wdtk.datamodel.interfaces.PropertyIdValue;
 
 public class ReconEntityRewriterTest {
 
-	NewItemLibrary library = null;
+	NewEntityLibrary library = null;
 	ReconEntityRewriter rewriter = null;
 	ItemIdValue newlyCreated = Datamodel.makeWikidataItemIdValue("Q1234");
 	PropertyIdValue newlyCreatedProperty = Datamodel.makeWikidataPropertyIdValue("P1234");
 
 	@BeforeMethod
 	public void setUp() {
-		library = new NewItemLibrary();
+		library = new NewEntityLibrary();
 	}
 
 	@Test(expectedExceptions = ReconEntityRewriter.MissingEntityIdFound.class)
@@ -82,7 +82,7 @@ public class ReconEntityRewriterTest {
 	}
 
 	@Test
-	public void testRewriteCreate() throws NewItemNotCreatedYetException {
+	public void testRewriteCreate() throws NewEntityNotCreatedYetException {
 		ItemIdValue subject = TestingData.newIdA;
 		rewriter = new ReconEntityRewriter(library, subject);
 		library.setQid(4567L, "Q1234");
@@ -103,7 +103,7 @@ public class ReconEntityRewriterTest {
 	}
 
 	@Test
-	public void testRewriteUpdateOnPreviouslyCreatedEntity() throws NewItemNotCreatedYetException {
+	public void testRewriteUpdateOnPreviouslyCreatedEntity() throws NewEntityNotCreatedYetException {
 		ItemIdValue subject = TestingData.newIdA;
 		rewriter = new ReconEntityRewriter(library, subject);
 		library.setQid(4567L, "Q1234");
@@ -118,7 +118,7 @@ public class ReconEntityRewriterTest {
 	}
 
 	@Test
-	public void testRewriteUpdateOnExistingEntity() throws NewItemNotCreatedYetException {
+	public void testRewriteUpdateOnExistingEntity() throws NewEntityNotCreatedYetException {
 		ItemIdValue subject = TestingData.matchedId;
 		rewriter = new ReconEntityRewriter(library, subject);
 		library.setQid(4567L, "Q1234");
@@ -139,7 +139,7 @@ public class ReconEntityRewriterTest {
 	}
 
 	@Test
-	public void testRewritePropertyUpdateOnExistingEntity() throws NewItemNotCreatedYetException {
+	public void testRewritePropertyUpdateOnExistingEntity() throws NewEntityNotCreatedYetException {
 		PropertyIdValue subject = TestingData.matchedPropertyID;
 		rewriter = new ReconEntityRewriter(library, subject);
 		library.setQid(7654L, "P1234");

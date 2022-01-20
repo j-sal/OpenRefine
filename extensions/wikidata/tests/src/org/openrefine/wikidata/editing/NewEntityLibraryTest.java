@@ -39,13 +39,13 @@ import com.google.refine.model.Project;
 import com.google.refine.model.Recon;
 import com.google.refine.model.recon.StandardReconConfig;
 
-public class NewItemLibraryTest extends WikidataRefineTest {
+public class NewEntityLibraryTest extends WikidataRefineTest {
 
-    private NewItemLibrary library;
+    private NewEntityLibrary library;
 
     @BeforeMethod
     public void setUp() {
-        library = new NewItemLibrary();
+        library = new NewEntityLibrary();
         library.setQid(1234L, "Q345");
         library.setQid(3289L, "Q384");
     }
@@ -83,7 +83,7 @@ public class NewItemLibraryTest extends WikidataRefineTest {
 
     @Test
     public void testSerialize() {
-        JacksonSerializationTest.canonicalSerialization(NewItemLibrary.class, library,
+        JacksonSerializationTest.canonicalSerialization(NewEntityLibrary.class, library,
                 "{\"qidMap\":{\"1234\":\"Q345\",\"3289\":\"Q384\"}}");
     }
 
