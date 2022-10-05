@@ -42,7 +42,7 @@ jobs:
           --health-retries 3
 
     steps:
-    - uses: actions/checkout@v2.3.4
+    - uses: actions/checkout@v3.1.0
       with:
         ref: ${{ github.event.pull_request.head.ref }}
         repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -87,7 +87,7 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.1.0
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -105,7 +105,7 @@ jobs:
     strategy:
       matrix: ${{fromJSON(needs.prepare_ui_test_matrix.outputs.matrix)}}
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.1.0
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
